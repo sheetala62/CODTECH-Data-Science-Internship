@@ -3,9 +3,7 @@ from tensorflow.keras import layers, models
 import matplotlib.pyplot as plt
 import numpy as np
 
-# -----------------------------
 # 1. LOAD DATASET (MNIST)
-# -----------------------------
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
 print("Training data shape:", x_train.shape)
@@ -15,9 +13,7 @@ print("Testing data shape:", x_test.shape)
 x_train = x_train / 255.0
 x_test = x_test / 255.0
 
-# -----------------------------
 # 2. BUILD DEEP LEARNING MODEL
-# -----------------------------
 model = models.Sequential([
     layers.Flatten(input_shape=(28, 28)),
     layers.Dense(128, activation="relu"),
@@ -33,9 +29,7 @@ model.compile(
 
 model.summary()
 
-# -----------------------------
 # 3. TRAIN MODEL
-# -----------------------------
 history = model.fit(
     x_train,
     y_train,
@@ -43,16 +37,11 @@ history = model.fit(
     validation_split=0.1
 )
 
-# -----------------------------
 # 4. EVALUATE MODEL
-# -----------------------------
 test_loss, test_accuracy = model.evaluate(x_test, y_test)
 print("\nTest Accuracy:", test_accuracy)
 
-# -----------------------------
 # 5. VISUALIZATION (IMPORTANT)
-# -----------------------------
-
 # Accuracy Graph
 plt.plot(history.history["accuracy"], label="Train Accuracy")
 plt.plot(history.history["val_accuracy"], label="Validation Accuracy")
@@ -71,9 +60,7 @@ plt.legend()
 plt.title("Model Loss")
 plt.show()
 
-# -----------------------------
 # 6. PREDICTION VISUALIZATION
-# -----------------------------
 predictions = model.predict(x_test)
 
 plt.figure(figsize=(8, 8))
